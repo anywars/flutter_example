@@ -35,14 +35,32 @@ class _LocalAuthState extends State<LocalAuthPage> {
     return Scaffold(
       appBar: AppBar(title: Text('Local Auth'),),
       body: Column(
-        children: [
-
-          
-          Text("${_availableBiometrics}")
-        ],
+        children: _authentications(),
       ),
     );
   }
 
 
+  List<Widget> _authentications() {
+    List<Widget> widges = [];
+    _availableBiometrics?.forEach((element) {
+      widges.add(
+        InkWell(
+          child: ElevatedButton(
+            child: Text('인증'),
+            onPressed: () {
+              _auth.authenticate(
+                  localizedReason: 'Let OS determine authentication method',
+                  useErrorDialogs: true,
+                  stickyAuth: true
+              ).then((authenticated) {
+                print("authenticated: $authenticated");
+              });
+            },
+          ),
+        )
+      );
+    });
+    return widges;
+  }
 }

@@ -27,6 +27,28 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyABZw2mrjqSEFoVvmxGMQr6hUqoC3rpVeo",
+      authDomain: "flutter-example-3e6b8.firebaseapp.com",
+      projectId: "flutter-example-3e6b8",
+      storageBucket: "flutter-example-3e6b8.appspot.com",
+      messagingSenderId: "777486055736",
+      appId: "1:777486055736:web:8983a1e0f840c0882769cd",
+      measurementId: "G-LN01BQRMM8"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+
+
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
