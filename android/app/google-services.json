@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "777486055736-t7n1k4pngp257vtb1trmc1347ivc6n8u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.anypeace.fe",
+            "certificate_hash": "50cedbe960c737c123bdcceae59e2b7bc7d35525"
+          }
+        },
+        {
           "client_id": "777486055736-jnbb0kfn7rhqv73v8bfgjam7q8rbv2d9.apps.googleusercontent.com",
           "client_type": 3
         }
