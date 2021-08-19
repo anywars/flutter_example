@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_example/ext/analytics.dart';
 import 'package:image_picker/image_picker.dart';
 
 
@@ -20,6 +21,8 @@ class _ImagePickerWidget extends State<ImagePickerPage> {
 
   @override
   Widget build(BuildContext context) {
+    Analytics.instance.logEvent("screen_image_picker");
+
     return Scaffold(
           appBar: AppBar(
           title: Text("ImagePicker"),

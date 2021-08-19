@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_example/ext/analytics.dart';
 import 'package:local_auth/local_auth.dart';
 
 
@@ -32,6 +33,8 @@ class _LocalAuthState extends State<LocalAuthPage> {
 
   @override
   Widget build(BuildContext context) {
+    Analytics.instance.logEvent("screen_local_auth");
+
     return Scaffold(
       appBar: AppBar(title: Text('Local Auth'),),
       body: Column(
@@ -46,19 +49,18 @@ class _LocalAuthState extends State<LocalAuthPage> {
     _availableBiometrics?.forEach((element) {
       widges.add(
         InkWell(
-          child: ElevatedButton(
-            child: Text('인증'),
-            onPressed: () {
+          child: Text('인증'),
+            onTap: () {
               _auth.authenticate(
                   localizedReason: 'Let OS determine authentication method',
                   useErrorDialogs: true,
                   stickyAuth: true
               ).then((authenticated) {
-                print("authenticated: $authenticated");
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text((authenticated) ? '인증되었습니다.' : '인증실패했습니다.')));
               });
             },
           ),
-        )
       );
     });
     return widges;

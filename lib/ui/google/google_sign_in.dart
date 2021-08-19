@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_example/ext/analytics.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 
@@ -25,13 +26,15 @@ class SignInState extends State<SignInPage> {
         }
       });
 
-
+      Analytics.instance.logLogin("google", account!.id);
     });
     widget._googleSignIn.signInSilently();
   }
 
   @override
   Widget build(BuildContext context) {
+    Analytics.instance.logEvent("screen_sign_in");
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Google Sign In'),

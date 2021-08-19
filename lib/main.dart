@@ -4,9 +4,12 @@ import 'package:animations/animations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_example/ui/ext/utils.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_example/ext/analytics.dart';
+import 'package:flutter_example/ext/utils.dart';
 import 'package:flutter_example/ui/firebase/firebase_messaging.dart';
 import 'package:flutter_example/ui/google/google_maps.dart';
 import 'package:flutter_example/ui/google/google_sign_in.dart';
@@ -33,14 +36,18 @@ void main() async {
 }
 
 class MainPage extends StatefulWidget {
+
   @override
   State createState() => _MainState();
+
 }
 
 class _MainState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    Analytics.instance.logAppOpen();
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData.light(),
@@ -74,12 +81,37 @@ class _MainState extends State<MainPage> {
   Future<void> _initIntro() async {
     await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
 
-    var originalOnError = FlutterError.onError;
+    final originalOnError = FlutterError.onError;
     FlutterError.onError = (errors) async {
       await FirebaseCrashlytics.instance.recordFlutterError(errors);
       originalOnError!(errors);
     };
-    return Future.delayed(Duration(seconds: 2));
+
+    final remoteConfig = RemoteConfig.instance;
+    await remoteConfig.setConfigSettings(RemoteConfigSettings(
+      fetchTimeout: const Duration(seconds: 10),
+      minimumFetchInterval: const Duration(hours: 1),
+    ));
+    await remoteConfig.setDefaults(<String, dynamic>{
+      'client_id': 'v1',
+      'client_secret': 'v2',
+    });
+    RemoteConfigValue(null, ValueSource.valueStatic);
+
+    try {
+      remoteConfig.fetchAndActivate();
+    } on PlatformException catch (exception) {
+      print(exception);
+    } catch (exception) {
+      print('Unable to fetch remote config. Cached or default values will be used');
+      print(exception);
+    }
+
+    print("== client_id: ${remoteConfig.getString("client_id")} ==");
+    print("== client_secret: ${remoteConfig.getString("client_secret")} ==");
+
+
+    Future.delayed(Duration(seconds: 2));
   }
 }
 
@@ -88,6 +120,7 @@ class _MainState extends State<MainPage> {
 class IntroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Analytics.instance.logEvent("screen_intro");
     return Scaffold(
       body: Center(child: Text('Intro'),),
     );
@@ -141,6 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Analytics.instance.logEvent("screen_myhome");
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),

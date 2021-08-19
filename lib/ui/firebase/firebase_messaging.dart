@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_example/ext/analytics.dart';
 
 class MessageArguments {
   final RemoteMessage? message;
@@ -34,7 +35,7 @@ class _MessageState extends State<MessagingPage> {
     final args = ModalRoute.of(context)?.settings.arguments as MessageArguments?;
     final message = args?.message;
     final notification = message?.notification;
-
+    Analytics.instance.logEvent("screen_message");
 
     return Scaffold(
       appBar: AppBar(title: Text("Messaging"),),

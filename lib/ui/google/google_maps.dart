@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_example/ext/analytics.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapsPage extends StatefulWidget {
@@ -15,6 +16,8 @@ class _MapsState extends State<MapsPage> {
 
   @override
   Widget build(BuildContext context) {
+    Analytics.instance.logEvent("screen_maps");
+
     var maps = GoogleMap(
       // liteModeEnabled: true,
       mapToolbarEnabled: true,
