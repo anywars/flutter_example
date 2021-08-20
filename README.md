@@ -49,10 +49,35 @@
 
 5. Analytics (https://pub.dev/packages/firebase_analytics)
    flutter pub add firebase_analytics
-   
+
+   adb shell setprop debug.firebase.analytics.app com.anypeace.fe
+
+6. Json Serializable (https://pub.dev/packages/json_serializable)
+   dart pub add json_serializable
+
+7. Google Ads (https://pub.dev/packages/google_mobile_ads)
+   flutter pub add google_mobile_ads
+
 
 ## 그외 유용한 Library
+   
+1. Geo Locator (https://pub.dev/packages/geolocator)
+   flutter pub add geolocator
 
-1. App Badger (https://pub.dev/packages/flutter_app_badger)
-   flutter pub add flutter_app_badger
+2. Network Image Cache (https://pub.dev/packages/cached_network_image)
+   flutter pub add cached_network_image
+
+3. Animated Text (https://pub.dev/packages/animated_text_kit)
+   flutter pub add animated_text_kit
+   
+4. Provider (https://pub.dev/packages/provider)
+   flutter pub add provider
+   
+5. Package Info (https://pub.dev/packages/package_info_plus)
+   flutter pub add package_info_plus
+   
+
+## 참고 사이트
+
+1. 기본 Icons 확인 (https://fonts.google.com/icons) 
    

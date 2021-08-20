@@ -20,9 +20,13 @@ class _ImagePickerWidget extends State<ImagePickerPage> {
   var _selectedImages = List<XFile>.of([]);
 
   @override
-  Widget build(BuildContext context) {
-    Analytics.instance.logEvent("screen_image_picker");
+  void initState() {
+    Analytics.instance.logScreen("screen_image_picker");
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
           appBar: AppBar(
           title: Text("ImagePicker"),

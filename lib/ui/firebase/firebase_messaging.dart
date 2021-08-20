@@ -31,11 +31,16 @@ class _MessageState extends State<MessagingPage> {
   }
 
   @override
+  void initState() {
+    Analytics.instance.logScreen("screen_message");
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)?.settings.arguments as MessageArguments?;
     final message = args?.message;
     final notification = message?.notification;
-    Analytics.instance.logEvent("screen_message");
 
     return Scaffold(
       appBar: AppBar(title: Text("Messaging"),),

@@ -15,9 +15,13 @@ class _MapsState extends State<MapsPage> {
   GoogleMapController? _controller;
 
   @override
-  Widget build(BuildContext context) {
-    Analytics.instance.logEvent("screen_maps");
+  void initState() {
+    Analytics.instance.logScreen("screen_maps");
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     var maps = GoogleMap(
       // liteModeEnabled: true,
       mapToolbarEnabled: true,

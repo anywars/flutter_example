@@ -11,16 +11,21 @@ class Analytics {
     return _instance!;
   }
 
-  FirebaseAnalyticsObserver get _observer {
-    return _analyticsObserver ??= FirebaseAnalyticsObserver(analytics: analytics);
+  FirebaseAnalyticsObserver get observer {
+    _analyticsObserver ??= FirebaseAnalyticsObserver(analytics: analytics);
+    return _analyticsObserver!;
   }
 
   FirebaseAnalytics analytics;
   FirebaseAnalyticsObserver? _analyticsObserver;
 
 
-  Future<void> logEvent(String name) async {
-    await analytics.logEvent(name: name);
+  Future<void> logEvent({required String name, Map<String, Object?>? params}) async {
+    await analytics.logEvent(name: name, parameters: params);
+  }
+
+  Future<void> logScreen(String screenName) async {
+    await analytics.setCurrentScreen(screenName: screenName);
   }
 
   Future<void> logAppOpen() async {

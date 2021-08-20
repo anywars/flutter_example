@@ -10,7 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_example/ext/analytics.dart';
 import 'package:flutter_example/ext/utils.dart';
+import 'package:flutter_example/ui/animated_text/animated_text.dart';
+import 'package:flutter_example/ui/cached_network_image/cached_network_image.dart';
 import 'package:flutter_example/ui/firebase/firebase_messaging.dart';
+import 'package:flutter_example/ui/geolocator/geolocator.dart';
 import 'package:flutter_example/ui/google/google_maps.dart';
 import 'package:flutter_example/ui/google/google_sign_in.dart';
 import 'package:flutter_example/ui/image_picker/image_picker.dart';
@@ -29,6 +32,7 @@ void main() async {
   await Firebase.initializeApp();
   
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingHandler);
+  Analytics.instance.logAppOpen();
 
   runZonedGuarded(() {
     runApp(MainPage());
@@ -46,8 +50,6 @@ class _MainState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    Analytics.instance.logAppOpen();
-
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData.light(),
@@ -59,6 +61,7 @@ class _MainState extends State<MainPage> {
         MessagingPage.routeName: (context) => MessagingPage(),
       },
 
+      navigatorObservers: [Analytics.instance.observer],
       home: FutureBuilder(
         future: _initIntro(),
         builder: (context, snapshot) {
@@ -109,10 +112,9 @@ class _MainState extends State<MainPage> {
 
     print("== client_id: ${remoteConfig.getString("client_id")} ==");
     print("== client_secret: ${remoteConfig.getString("client_secret")} ==");
-
-
     Future.delayed(Duration(seconds: 2));
   }
+
 }
 
 
@@ -120,7 +122,7 @@ class _MainState extends State<MainPage> {
 class IntroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Analytics.instance.logEvent("screen_intro");
+    Analytics.instance.logScreen("screen_intro");
     return Scaffold(
       body: Center(child: Text('Intro'),),
     );
@@ -138,11 +140,20 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  final _examples = [ImagePickerPage.routeName, SignInPage.routeName, MapsPage.routeName, LocalAuthPage.routeName, ];
+  final _examples = [
+    ImagePickerPage.routeName,
+    SignInPage.routeName,
+    MapsPage.routeName,
+    LocalAuthPage.routeName,
+    GeolocatorPage.routeName,
+    CachedNetworkImagePage.routeName,
+    AnimatedTextPage.routeName,
+  ];
 
   @override
   void initState() {
     super.initState();
+    Analytics.instance.logScreen("screen_home");
     _saveFcmToken();
 
     FirebaseMessaging.instance.getInitialMessage()
@@ -174,10 +185,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Analytics.instance.logEvent("screen_myhome");
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        centerTitle: true,
       ),
       body: ListView.builder(
         itemCount: _examples.length,
@@ -185,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
           return OpenContainer(
             transitionType: ContainerTransitionType.fade,
             closedBuilder: (_, open) {
-              return Card(child: getRow(position),);
+              return Card(child: getView(position),);
             },
             openBuilder: (_, open) {
               var example = _examples[position];
@@ -201,6 +212,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 return LocalAuthPage();
               }
 
+              else if (example == GeolocatorPage.routeName) {
+                return GeolocatorPage();
+              }
+
+              else if (example == CachedNetworkImagePage.routeName) {
+                return CachedNetworkImagePage();
+              }
+
+              else if (example == AnimatedTextPage.routeName) {
+                return AnimatedTextPage();
+              }
+
               else {
                 return SignInPage();
               }
@@ -212,7 +235,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget getRow(int i) {
+  Widget getView(int i) {
     return InkWell(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -228,7 +251,7 @@ class _MyHomePageState extends State<MyHomePage> {
     var prefs = await SharedPreferences.getInstance();
     await prefs.setString("token", token);
 
-    var isSubscribed = (await prefs.getBool("is_subscribed") ?? false);
+    var isSubscribed = prefs.getBool("is_subscribed") ?? false;
     if (FirebaseMessaging.instance.isSupported() && !isSubscribed) {
       FirebaseMessaging.instance.subscribeToTopic("test");
       await prefs.setBool("is_subscribed", true);

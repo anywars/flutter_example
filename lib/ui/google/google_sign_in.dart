@@ -19,6 +19,8 @@ class SignInState extends State<SignInPage> {
   @override
   void initState() {
     super.initState();
+    Analytics.instance.logScreen("screen_sign_in");
+
     widget._googleSignIn.onCurrentUserChanged.listen((account) {
       setState(() {
         if (account != null) {
@@ -33,8 +35,6 @@ class SignInState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    Analytics.instance.logEvent("screen_sign_in");
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Google Sign In'),

@@ -19,6 +19,8 @@ class _LocalAuthState extends State<LocalAuthPage> {
   @override
   void initState() {
     super.initState();
+    Analytics.instance.logScreen("screen_local_auth");
+
     _auth.isDeviceSupported().then((isSupported) =>
       setState(() {
         if (isSupported) {
@@ -33,12 +35,11 @@ class _LocalAuthState extends State<LocalAuthPage> {
 
   @override
   Widget build(BuildContext context) {
-    Analytics.instance.logEvent("screen_local_auth");
-
     return Scaffold(
       appBar: AppBar(title: Text('Local Auth'),),
-      body: Column(
-        children: _authentications(),
+      body: Container(
+        padding: const EdgeInsets.all(10),
+        child: Column(children: _authentications(),),
       ),
     );
   }
@@ -46,16 +47,18 @@ class _LocalAuthState extends State<LocalAuthPage> {
 
   List<Widget> _authentications() {
     List<Widget> widges = [];
-    _availableBiometrics?.forEach((element) {
+    _availableBiometrics?.forEach((type) {
       widges.add(
-        InkWell(
-          child: Text('인증'),
-            onTap: () {
+        ElevatedButton(
+          child: Text( type == BiometricType.fingerprint ? "지문인증" : "페이스아이디"),
+            onPressed: () {
+              Analytics.instance.logEvent(name: "click_local_auth", params: {"type": type.toString()});
               _auth.authenticate(
                   localizedReason: 'Let OS determine authentication method',
                   useErrorDialogs: true,
                   stickyAuth: true
               ).then((authenticated) {
+                Analytics.instance.logEvent(name: "result_local_auth", params: {"success": authenticated});
                 ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(content: Text((authenticated) ? '인증되었습니다.' : '인증실패했습니다.')));
               });
