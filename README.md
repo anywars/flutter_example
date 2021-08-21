@@ -58,6 +58,9 @@
 7. Google Ads (https://pub.dev/packages/google_mobile_ads)
    flutter pub add google_mobile_ads
 
+8. Google Fonts (https://pub.dev/packages/google_fonts)
+   flutter pub add google_fonts
+   * https://fonts.google.com/
 
 ## 그외 유용한 Library
    
