@@ -1,35 +1,15 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_example/controller/animated_text_controller.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AnimatedTextPage extends StatefulWidget {
+class AnimatedTextPage extends GetView<AnimatedTextController> {
   static final routeName = "/animated_text";
 
   @override
-  State createState() => _AnimatedTextState();
-}
-
-class _AnimatedTextState extends State<AnimatedTextPage> {
-
-  final widgets = List<Widget>.of([]);
-
-  @override
-  void initState() {
-    super.initState();
-    widgets.add(_typewriter());
-    widgets.add(_typer());
-    widgets.add(_combination());
-    widgets.add(_flicker());
-    widgets.add(_wavyText());
-    widgets.add(_textLiquidFill());
-    widgets.add(_colorize());
-    widgets.add(_scale());
-    widgets.add(_fade());
-    widgets.add(_rotate());
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final _widgets = <Widget>[_typewriter(), _typer(), _combination(), _flicker(), _wavyText(), _textLiquidFill(), _colorize(), _scale(), _fade(), _rotate()];
     return Scaffold(
       appBar: AppBar(title: Text("Animated Text"),),
       body: GridView.count(
@@ -37,14 +17,14 @@ class _AnimatedTextState extends State<AnimatedTextPage> {
         // scrollDirection: Axis.horizontal,
         children: [
 
-          for (var i=0; i<widgets.length; i++) ...{
+          for (var i=0; i<_widgets.length; i++) ...{
             Container(
               decoration: BoxDecoration(color: Colors.orange[800],),
               height: 300.0,
               width: 300.0,
               child: Center(
                 key: ValueKey("rotate"),
-                child: widgets[i],
+                child: _widgets[i],
               ),
             ),
           }

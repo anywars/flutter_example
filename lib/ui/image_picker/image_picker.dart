@@ -2,76 +2,49 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_example/ext/analytics.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:flutter_example/controller/image_picker_controller.dart';
+import 'package:get/get.dart';
 
 
-
-class ImagePickerPage extends StatefulWidget {
-  static final routeName = "/image_picker";
+class ImagePickerPage extends GetView<ImagePickerController> {
   ImagePickerPage({Key? key, VoidCallback? openContainer}): super(key: key);
+  static final routeName = "/image_picker";
 
   @override
-  _ImagePickerWidget createState() => _ImagePickerWidget();
-}
+  Widget build(BuildContext context) =>
+    Scaffold(
+        appBar: AppBar(
+        title: Text("ImagePicker"),
+      ),
+      body: SafeArea(
+        child: Column(
+          children: [
 
-class _ImagePickerWidget extends State<ImagePickerPage> {
-  final ImagePicker _picker = ImagePicker();
-  var _selectedImages = List<XFile>.of([]);
+            Row(children: attachButtons(),),
 
-  @override
-  void initState() {
-    Analytics.instance.logScreen("screen_image_picker");
-    super.initState();
-  }
+            Text("-------------------"),
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-          appBar: AppBar(
-          title: Text("ImagePicker"),
+            selectedImage(),
+
+            Text("-------------------"),
+
+          ],
         ),
-        body: SafeArea(
-          child: Column(
-            children: [
-
-              Row(children: attachButtons(),),
-
-              Text("-------------------"),
-
-              selectedImage(),
-
-              Text("-------------------"),
-
-            ],
-          ),
-        ),
+      ),
     );
-  }
 
 
   List<Widget> attachButtons() {
     List<Widget> buttons = [];
     if (!kIsWeb) {
-      buttons.add(MaterialButton(
+      buttons.add(ElevatedButton(
         child: Text("Camera"),
-        onPressed: () async {
-          final file = await _picker.pickImage(source: ImageSource.camera);
-          print("===== ${file?.path}");
-          setState(() {
-            _selectedImages.add(file!);
-          });
-        },
+        onPressed: controller.onOpenCamera,
       ));
     }
-    buttons.add(MaterialButton(
+    buttons.add(ElevatedButton(
       child: Text("Image"),
-      onPressed: () async {
-        final list = await _picker.pickMultiImage();
-        setState(() {
-          _selectedImages.addAll(list!.where((f) => !_selectedImages.contains(f) ).toList());
-        });
-      },
+      onPressed: controller.onOpenImage,
     ));
     return buttons;
   }
@@ -80,20 +53,20 @@ class _ImagePickerWidget extends State<ImagePickerPage> {
   Widget selectedImage() {
     return Container(
       height: 100,
-      child: ListView.builder(
+      child: Obx(() => ListView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 7),
         scrollDirection: Axis.horizontal,
-        itemCount: _selectedImages.length,
+        itemCount: controller.selectedImages.length,
         itemBuilder: (context, position) {
           return getRow(position);
         }
       ),
-    );
+    ));
   }
 
 
   Widget getRow(int position) {
-    var item = _selectedImages[position];
+    var item = controller.selectedImages[position];
     return  Container(
       width: 100,
       // padding: EdgeInsets.all(7),
@@ -116,11 +89,7 @@ class _ImagePickerWidget extends State<ImagePickerPage> {
             transform: Matrix4.translationValues(14, -14, 0),
             child: IconButton(
                 padding: const EdgeInsets.all(0),
-                onPressed: () {
-                  setState(() {
-                    _selectedImages.removeAt(position);
-                  });
-                },
+                onPressed: () => controller.selectedImages.removeAt(position),
                 icon: Image(image: AssetImage('assets/ic_close.png'), width: 20, height: 20,)
             ),
           ),

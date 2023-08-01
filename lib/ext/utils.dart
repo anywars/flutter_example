@@ -1,21 +1,18 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Utils {
 
-  static dialog(String? title, String message, VoidCallback? onPressed) {
-    return AlertDialog(
-      title: Text(title ?? ''),
-      content: Text(message),
-      actions: [
-        TextButton(
-          onPressed: () {
-            onPressed?.call();
-          },
-          child: Text('확인'),
-        )
-      ],
-    );
-  }
+  static Future dialog(String? title, String message, VoidCallback? onPressed) => Get.dialog(AlertDialog(
+    title: Text(title ?? ''),
+    content: Text(message),
+    actions: [
+      TextButton(
+        onPressed: onPressed?.call ?? () => Get.back(result: true),
+        child: Text('확인'),
+      )
+    ],
+  ));
 
 }

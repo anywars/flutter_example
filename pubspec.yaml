@@ -27,30 +27,36 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-  image_picker: ^0.8.3+2
-  animations: ^2.0.1
-  google_sign_in: ^5.0.7
-  google_maps_flutter: ^2.0.6
-  local_auth: ^1.1.6
-  url_launcher: ^6.0.9
-  shared_preferences: ^2.0.6
-  firebase_core: ^1.5.0
-  firebase_core_web: ^1.1.0
-  firebase_crashlytics: ^2.2.0
-  firebase_messaging: ^10.0.5
-  firebase_messaging_web: ^2.0.4
-  firebase_remote_config: ^0.10.0+4
-  firebase_analytics: ^8.3.0
-  geolocator: ^7.4.0
-  cached_network_image: ^3.1.0
-  animated_text_kit: ^4.2.1
-  google_fonts: ^2.1.0
+  cupertino_icons: ^1.0.5
+  json_annotation: ^4.8.1
+  image_picker: ^1.0.1
+  animations: ^2.0.7
+  google_sign_in: ^6.1.4
+  google_maps_flutter: ^2.4.0
+  local_auth: ^2.1.6
+  url_launcher: ^6.1.12
+  shared_preferences: ^2.2.0
+  firebase_core: ^2.15.0
+  firebase_core_web: ^2.6.0
+  firebase_crashlytics: ^3.3.4
+  firebase_messaging: ^14.6.5
+  firebase_messaging_web: ^3.5.4
+  firebase_remote_config: ^4.2.4
+  firebase_analytics: ^10.4.4
+  geolocator: ^9.0.2
+  cached_network_image: ^3.2.3
+  animated_text_kit: ^4.2.2
+  google_fonts: ^5.1.0
+  get: ^4.6.5
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  build_runner: ^2.4.6
+  json_serializable: ^6.7.1
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

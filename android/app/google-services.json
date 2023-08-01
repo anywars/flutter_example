@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "777486055736",
+    "firebase_url": "https://flutter-example-3e6b8-default-rtdb.firebaseio.com",
     "project_id": "flutter-example-3e6b8",
     "storage_bucket": "flutter-example-3e6b8.appspot.com"
   },
@@ -14,11 +15,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "777486055736-5vk0ka84c76465vf967ltuj1ktsrjjo5.apps.googleusercontent.com",
+          "client_id": "777486055736-2nc7gtdkeug72lnt50tsofjkj587rc5k.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.anypeace.fe",
             "certificate_hash": "2eb08b25c681ec7f7af3a399e8fdd83cd71f02dd"
+          }
+        },
+        {
+          "client_id": "777486055736-9o8nauk21q8k1b361mr6r2ope2vq51h7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.anypeace.fe",
+            "certificate_hash": "928e9571ccae64516242464897f55620b8d86a12"
           }
         },
         {
@@ -30,20 +39,63 @@
           }
         },
         {
-          "client_id": "777486055736-jnbb0kfn7rhqv73v8bfgjam7q8rbv2d9.apps.googleusercontent.com",
+          "client_id": "777486055736-g5978676789qhmhl4o7qgu12s1boj984.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
           "current_key": "AIzaSyApoHVrQvyIbXEQWgQNppMCGQu4ObrSKUo"
+        },
+        {
+          "current_key": "AIzaSyAzkeNi597dkjBMsuZXvO5p5daEl4HYM5s"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "777486055736-jnbb0kfn7rhqv73v8bfgjam7q8rbv2d9.apps.googleusercontent.com",
+              "client_id": "777486055736-g5978676789qhmhl4o7qgu12s1boj984.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777486055736:android:e6f5914183eecc9d2769cd",
+        "android_client_info": {
+          "package_name": "com.anypeace.tf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "777486055736-ikfaaoh2o8s6euh93arfdumeviirpq6k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.anypeace.tf",
+            "certificate_hash": "50cedbe960c737c123bdcceae59e2b7bc7d35525"
+          }
+        },
+        {
+          "client_id": "777486055736-g5978676789qhmhl4o7qgu12s1boj984.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApoHVrQvyIbXEQWgQNppMCGQu4ObrSKUo"
+        },
+        {
+          "current_key": "AIzaSyAzkeNi597dkjBMsuZXvO5p5daEl4HYM5s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "777486055736-g5978676789qhmhl4o7qgu12s1boj984.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

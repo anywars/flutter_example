@@ -1,6 +1,8 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_example/controller/message_controller.dart';
 import 'package:flutter_example/ext/analytics.dart';
+import 'package:get/get.dart';
 
 class MessageArguments {
   final RemoteMessage? message;
@@ -9,37 +11,12 @@ class MessageArguments {
         assert(message != null);
 }
 
-class MessagingPage extends StatefulWidget {
+class MessagingPage extends GetView<MessageController> {
   static final routeName = "/messaging";
 
   @override
-  State createState() => _MessageState();
-}
-
-class _MessageState extends State<MessagingPage> {
-
-  Widget row(String title, String? value) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
-      child: Row(
-        children: [
-          Text("$title:"),
-          Text(value ?? "N/A"),
-        ],
-      ),
-    );
-  }
-
-  @override
-  void initState() {
-    Analytics.instance.logScreen("screen_message");
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)?.settings.arguments as MessageArguments?;
-    final message = args?.message;
+    final message = controller.arguments?.message;
     final notification = message?.notification;
 
     return Scaffold(
@@ -49,19 +26,19 @@ class _MessageState extends State<MessagingPage> {
           padding: const EdgeInsets.all(10),
           child: Column(
             children: [
-              row('Triggered application open', "${args?.openedApplication.toString()}"),
+              _row('Triggered application open', "${controller.arguments?.openedApplication.toString()}"),
               if (message != null) ...[
-                row('Message ID', message.messageId!),
-                row('Sender ID', message.senderId ?? ''),
-                row('Category', message.category ?? ''),
-                row('Collapse Key', message.collapseKey ?? ''),
-                row('Content Available', message.contentAvailable.toString()),
-                row('Data', message.data.toString()),
-                row('From', message.from ?? ''),
-                row('Message ID', message.messageId ?? ''),
-                row('Sent Time', message.sentTime!.toString()),
-                row('Thread ID', message.threadId ?? ''),
-                row('Time to Live (TTL)', message.ttl.toString())
+                _row('Message ID', message.messageId!),
+                _row('Sender ID', message.senderId ?? ''),
+                _row('Category', message.category ?? ''),
+                _row('Collapse Key', message.collapseKey ?? ''),
+                _row('Content Available', message.contentAvailable.toString()),
+                _row('Data', message.data.toString()),
+                _row('From', message.from ?? ''),
+                _row('Message ID', message.messageId ?? ''),
+                _row('Sent Time', message.sentTime!.toString()),
+                _row('Thread ID', message.threadId ?? ''),
+                _row('Time to Live (TTL)', message.ttl.toString())
               ],
 
               if (notification != null) ...[
@@ -69,8 +46,8 @@ class _MessageState extends State<MessagingPage> {
                   padding: const EdgeInsets.only(top: 16),
                   child: Column(children: [
                     const Text('Remote Notification', style: TextStyle(fontSize: 18),),
-                    row('Title', notification.title ?? '',),
-                    row('Body', notification.body ?? '',)
+                    _row('Title', notification.title ?? '',),
+                    _row('Body', notification.body ?? '',)
                   ])
                 )
               ],
@@ -82,5 +59,16 @@ class _MessageState extends State<MessagingPage> {
     );
   }
 
+  Widget _row(String title, String? value) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
+      child: Row(
+        children: [
+          Text("$title:"),
+          Text(value ?? "N/A"),
+        ],
+      ),
+    );
+  }
 
 }

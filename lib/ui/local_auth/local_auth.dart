@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_example/ext/analytics.dart';
 import 'package:local_auth/local_auth.dart';
@@ -55,8 +54,6 @@ class _LocalAuthState extends State<LocalAuthPage> {
               Analytics.instance.logEvent(name: "click_local_auth", params: {"type": type.toString()});
               _auth.authenticate(
                   localizedReason: 'Let OS determine authentication method',
-                  useErrorDialogs: true,
-                  stickyAuth: true
               ).then((authenticated) {
                 Analytics.instance.logEvent(name: "result_local_auth", params: {"success": authenticated});
                 ScaffoldMessenger.of(context)
