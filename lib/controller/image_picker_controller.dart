@@ -1,4 +1,4 @@
-import 'package:flutter_example/ext/analytics.dart';
+import 'package:flutter_example/common/analytics.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 

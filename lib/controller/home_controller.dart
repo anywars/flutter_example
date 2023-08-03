@@ -1,7 +1,7 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_example/ext/analytics.dart';
+import 'package:flutter_example/common/analytics.dart';
 import 'package:flutter_example/ui/animated_text/animated_text.dart';
 import 'package:flutter_example/ui/dialog/dialog.dart';
 import 'package:flutter_example/ui/geolocator/geolocator.dart';

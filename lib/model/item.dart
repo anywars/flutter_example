@@ -5,7 +5,7 @@ part 'item.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Item {
-  Item({this.id, this.nodeId, this.name, this.fullName, this.private, this.url, this.description});
+  Item({this.id, this.nodeId, this.name, this.fullName, this.private, this.url, this.description, this.htmlUrl});
 
   double? id;
   String? nodeId;
@@ -14,6 +14,7 @@ class Item {
   bool? private;
   String? url;
   String? description;
+  String? htmlUrl;
 
   factory Item.fromJson(Map<String, dynamic> json) =>
       _$ItemFromJson(json);

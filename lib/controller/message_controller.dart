@@ -1,4 +1,4 @@
-import 'package:flutter_example/ext/analytics.dart';
+import 'package:flutter_example/common/analytics.dart';
 import 'package:flutter_example/ui/firebase/firebase_messaging.dart';
 import 'package:get/get.dart';
 

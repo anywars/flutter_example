@@ -47,6 +47,8 @@ dependencies:
   animated_text_kit: ^4.2.2
   google_fonts: ^5.1.0
   infinite_scroll_pagination: ^3.2.0
+  webview_flutter: ^4.2.2
+
   get: ^4.6.5
   get_storage: ^2.1.1
 

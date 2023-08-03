@@ -1,4 +1,4 @@
-import 'package:flutter_example/ext/utils.dart';
+import 'package:flutter_example/common/utils.dart';
 import 'package:flutter_example/model/item.dart';
 import 'package:flutter_example/model/query.dart';
 import 'package:flutter_example/provider/github_provider.dart';

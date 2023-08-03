@@ -18,6 +18,7 @@ class HomePage extends GetView<HomeController> {
           ElevatedButton(onPressed: controller.onGeolocator, child: Text('Geolocator')),
           ElevatedButton(onPressed: controller.onGithub, child: Text('Github')),
           ElevatedButton(onPressed: controller.onDialog, child: Text('Dialog')),
+          ElevatedButton(onPressed: controller.onDialog, child: Text('Dialog')),
 
           ElevatedButton(onPressed: controller.onTheme, child: Text('Theme')),
 

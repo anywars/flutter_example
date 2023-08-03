@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_example/ext/utils.dart';
+import 'package:flutter_example/common/utils.dart';
 import 'package:get/get.dart';
 
 class DialogController extends GetxController {

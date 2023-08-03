@@ -1,7 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_example/controller/message_controller.dart';
-import 'package:flutter_example/ext/analytics.dart';
+import 'package:flutter_example/common/analytics.dart';
 import 'package:get/get.dart';
 
 class MessageArguments {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_example/ext/analytics.dart';
+import 'package:flutter_example/common/analytics.dart';
 import 'package:local_auth/local_auth.dart';
 
 

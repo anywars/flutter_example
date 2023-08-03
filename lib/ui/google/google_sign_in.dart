@@ -1,36 +1,11 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_example/ext/analytics.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_example/controller/signin_controller.dart';
+import 'package:get/get.dart';
 
 
-class SignInPage extends StatefulWidget {
+class SignInPage extends GetView<SignInController> {
   static final routeName = "/google_sign_in";
-  final _googleSignIn = GoogleSignIn(scopes: ['email', 'https://www.googleapis.com/auth/contacts.readonly']);
-
-  @override
-  State<StatefulWidget> createState() => SignInState();
-}
-
-class SignInState extends State<SignInPage> {
-  GoogleSignInAccount? _currentUser;
-
-  @override
-  void initState() {
-    super.initState();
-    Analytics.instance.logScreen("screen_sign_in");
-
-    widget._googleSignIn.onCurrentUserChanged.listen((account) {
-      setState(() {
-        if (account != null) {
-          print( "logined: ${account.displayName}" );
-        }
-      });
-
-      Analytics.instance.logLogin("google", account!.id);
-    });
-    widget._googleSignIn.signInSilently();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,13 +21,7 @@ class SignInState extends State<SignInPage> {
             const Text("You are not currently signed in."),
             ElevatedButton(
               child: const Text('Sign In'),
-              onPressed: () async {
-                try {
-                  await widget._googleSignIn.signIn();
-                } catch (error) {
-                  print(error);
-                }
-              },
+              onPressed: controller.onSignIn,
             )
           ],
         ),

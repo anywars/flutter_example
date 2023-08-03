@@ -36,7 +36,7 @@ class Utils {
 
   static dismissModalProgress() {
     if (Get.isDialogOpen == true) {
-      Get.back(closeOverlays: true);
+      Get.back();
     }
   }
 

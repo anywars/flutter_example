@@ -1,8 +1,11 @@
+import 'dart:ffi';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_example/ext/utils.dart';
+import 'package:flutter_example/common/utils.dart';
 import 'package:flutter_example/ui/firebase/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class ExampleService extends GetxService {
   late final _storage = GetStorage();
@@ -53,5 +56,14 @@ class ExampleService extends GetxService {
       await _storage.write("is_subscribed", true);
       print("==== subscribed success!!! ====");
     }
+  }
+
+  Future saveGoogleAccount(GoogleSignInAccount? account) async {
+    if (account == null) return;
+    _storage.writeIfNull('id', account.id);
+    _storage.writeIfNull('displayName', account.displayName);
+    _storage.writeIfNull('email', account.email);
+    _storage.writeIfNull('photoUrl', account.photoUrl);
+    await _storage.save();
   }
 }
