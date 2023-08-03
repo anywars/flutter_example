@@ -6,6 +6,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_example/binding/animated_text_binding.dart';
+import 'package:flutter_example/binding/dialog_binding.dart';
 import 'package:flutter_example/binding/geolocator_binding.dart';
 import 'package:flutter_example/binding/github_binding.dart';
 import 'package:flutter_example/binding/home_binding.dart';
@@ -14,9 +15,10 @@ import 'package:flutter_example/binding/init_binding.dart';
 import 'package:flutter_example/binding/message_binding.dart';
 import 'package:flutter_example/ext/analytics.dart';
 import 'package:flutter_example/ui/animated_text/animated_text.dart';
+import 'package:flutter_example/ui/dialog/dialog.dart';
 import 'package:flutter_example/ui/firebase/firebase_messaging.dart';
 import 'package:flutter_example/ui/geolocator/geolocator.dart';
-import 'package:flutter_example/ui/github.dart';
+import 'package:flutter_example/ui/network_list/github.dart';
 import 'package:flutter_example/ui/google/google_sign_in.dart';
 import 'package:flutter_example/ui/home.dart';
 import 'package:flutter_example/ui/image_picker/image_picker.dart';
@@ -64,12 +66,13 @@ class MainPage extends StatelessWidget {
       GetPage(name: HomePage.routeName, page: () => HomePage(), binding: HomeBinding()),
       GetPage(name: ImagePickerPage.routeName, page: () => ImagePickerPage(), binding: ImagePickerBinding()),
       GetPage(name: SignInPage.routeName, page: () => SignInPage()),
-      GetPage(name: MessagingPage.routeName, page: () => MessagingPage()),
-      
+
       GetPage(name: AnimatedTextPage.routeName, page: () => AnimatedTextPage(), binding: AnimatedTextBinding()),
       GetPage(name: GeolocatorPage.routeName, page: () => GeolocatorPage(), binding: GeolocatorBinding()),
       GetPage(name: MessagingPage.routeName, page: () => MessagingPage(), binding: MessageBinding()),
       GetPage(name: GithubPage.routeName, page: () => GithubPage(), binding: GithubBinding()),
+      GetPage(name: DialogPage.routeName, page: () => DialogPage(), binding: DialogBinding()),
+
     ],
 
     initialRoute: HomePage.routeName,

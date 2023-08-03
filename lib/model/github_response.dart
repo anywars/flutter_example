@@ -8,7 +8,7 @@ part 'github_response.g.dart';
 class GithubResponse {
   GithubResponse({this.totalCount, this.incompleteResults, this.items});
 
-  int? totalCount;
+  double? totalCount;
   bool? incompleteResults;
   List<Item>? items;
 

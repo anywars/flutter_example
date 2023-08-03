@@ -7,7 +7,7 @@ part 'item.g.dart';
 class Item {
   Item({this.id, this.nodeId, this.name, this.fullName, this.private, this.url, this.description});
 
-  int? id;
+  double? id;
   String? nodeId;
   String? name;
   String? fullName;

@@ -6,7 +6,7 @@ class GithubProvider extends GetConnect {
   final _baseUrl = 'https://api.github.com';
 
   Future<Response<GithubResponse>> getRepositories(Query query) =>
-      get('/search/repositories?sort=stars', query: query.toJson(), decoder: (json) => GithubResponse.fromJson(json));
+      get('/search/repositories', query: query.toJson(), decoder: (json) => GithubResponse.fromJson(json));
 
   @override
   void onInit() {

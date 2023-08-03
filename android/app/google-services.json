@@ -23,14 +23,6 @@
           }
         },
         {
-          "client_id": "777486055736-9o8nauk21q8k1b361mr6r2ope2vq51h7.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.anypeace.fe",
-            "certificate_hash": "928e9571ccae64516242464897f55620b8d86a12"
-          }
-        },
-        {
           "client_id": "777486055736-t7n1k4pngp257vtb1trmc1347ivc6n8u.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -45,10 +37,10 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyApoHVrQvyIbXEQWgQNppMCGQu4ObrSKUo"
+          "current_key": "AIzaSyAzkeNi597dkjBMsuZXvO5p5daEl4HYM5s"
         },
         {
-          "current_key": "AIzaSyAzkeNi597dkjBMsuZXvO5p5daEl4HYM5s"
+          "current_key": "AIzaSyBz9kkQ9dCeyerw1dIpBOaHnc_80--JPOA"
         }
       ],
       "services": {
@@ -85,10 +77,10 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyApoHVrQvyIbXEQWgQNppMCGQu4ObrSKUo"
+          "current_key": "AIzaSyAzkeNi597dkjBMsuZXvO5p5daEl4HYM5s"
         },
         {
-          "current_key": "AIzaSyAzkeNi597dkjBMsuZXvO5p5daEl4HYM5s"
+          "current_key": "AIzaSyBz9kkQ9dCeyerw1dIpBOaHnc_80--JPOA"
         }
       ],
       "services": {

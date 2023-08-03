@@ -35,7 +35,6 @@ dependencies:
   google_maps_flutter: ^2.4.0
   local_auth: ^2.1.6
   url_launcher: ^6.1.12
-  shared_preferences: ^2.2.0
   firebase_core: ^2.15.0
   firebase_core_web: ^2.6.0
   firebase_crashlytics: ^3.3.4
@@ -47,7 +46,9 @@ dependencies:
   cached_network_image: ^3.2.3
   animated_text_kit: ^4.2.2
   google_fonts: ^5.1.0
+  infinite_scroll_pagination: ^3.2.0
   get: ^4.6.5
+  get_storage: ^2.1.1
 
 
 dev_dependencies:

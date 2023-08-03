@@ -21,6 +21,30 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+
+def keyProperties = new Properties()
+def keyPropertiesFile = rootProject.file('key.properties')
+if (keyPropertiesFile.exists()) {
+    keyPropertiesFile.withReader('UTF-8') { reader ->
+        keyProperties.load(reader)
+    }
+}
+
+def keystoreFile = keyProperties.getProperty('key.file')
+if (keystoreFile == null) {
+    keystoreFile = '~/.android/debug.keystore';
+}
+
+def keystoreAlias = keyProperties.getProperty('key.alias')
+if (keystoreAlias == null) {
+    keystoreAlias = 'androiddebugkey';
+}
+
+def keystorePasswd = keyProperties.getProperty('key.passwd')
+if (keystorePasswd == null) {
+    keystorePasswd = 'android'
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.google.gms.google-services'
@@ -28,7 +52,7 @@ apply plugin: 'com.google.firebase.crashlytics'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 33
+    compileSdk 33
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -46,11 +70,17 @@ android {
 
     signingConfigs {
         release {
-
+            storeFile file(keystoreFile)
+            storePassword keystorePasswd
+            keyAlias keystoreAlias
+            keyPassword keystorePasswd
         }
 
         debug {
-
+            storeFile file(keystoreFile)
+            storePassword keystorePasswd
+            keyAlias keystoreAlias
+            keyPassword keystorePasswd
         }
     }
 
@@ -64,6 +94,10 @@ android {
 
             signingConfig signingConfigs.debug
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
