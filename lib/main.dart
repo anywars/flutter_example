@@ -13,12 +13,14 @@ import 'package:flutter_example/binding/github_detail_binding.dart';
 import 'package:flutter_example/binding/home_binding.dart';
 import 'package:flutter_example/binding/image_picker_binding.dart';
 import 'package:flutter_example/binding/init_binding.dart';
+import 'package:flutter_example/binding/memo_binding.dart';
 import 'package:flutter_example/binding/message_binding.dart';
 import 'package:flutter_example/common/analytics.dart';
 import 'package:flutter_example/ui/animated_text/animated_text.dart';
 import 'package:flutter_example/ui/dialog/dialog.dart';
 import 'package:flutter_example/ui/firebase/firebase_messaging.dart';
 import 'package:flutter_example/ui/geolocator/geolocator.dart';
+import 'package:flutter_example/ui/memo/memo.dart';
 import 'package:flutter_example/ui/network_list/github.dart';
 import 'package:flutter_example/ui/google/google_sign_in.dart';
 import 'package:flutter_example/ui/home.dart';
@@ -75,6 +77,7 @@ class MainPage extends StatelessWidget {
       GetPage(name: GithubPage.routeName, page: () => GithubPage(), binding: GithubBinding()),
       GetPage(name: GithubDetailPage.routeName, page: () => GithubDetailPage(), binding: GithubDetailBinding()),
       GetPage(name: DialogPage.routeName, page: () => DialogPage(), binding: DialogBinding()),
+      GetPage(name: MemoPage.routeName, page: () => MemoPage(), binding: MemoBinding()),
     ],
 
     initialRoute: HomePage.routeName,

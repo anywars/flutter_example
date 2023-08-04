@@ -1,17 +1,27 @@
-import 'dart:ffi';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_example/common/utils.dart';
+import 'package:flutter_example/database/dao/memo_dao.dart';
+import 'package:flutter_example/database/database.dart';
 import 'package:flutter_example/ui/firebase/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+
 class ExampleService extends GetxService {
   late final _storage = GetStorage();
+  late MemoDao _memoDao;
+  MemoDao get memoDao => _memoDao;
 
   @override
   void onInit() {
+    $FloorExampleDatabase
+      .databaseBuilder('example.db')
+      .build()
+      .then((db) {
+        _memoDao = db.memoDao;
+    });
+
     _saveFcmToken();
     FirebaseMessaging.instance.getInitialMessage()
         .then((message) {

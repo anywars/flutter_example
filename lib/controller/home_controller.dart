@@ -6,6 +6,7 @@ import 'package:flutter_example/ui/animated_text/animated_text.dart';
 import 'package:flutter_example/ui/dialog/dialog.dart';
 import 'package:flutter_example/ui/geolocator/geolocator.dart';
 import 'package:flutter_example/ui/image_picker/image_picker.dart';
+import 'package:flutter_example/ui/memo/memo.dart';
 import 'package:flutter_example/ui/network_list/github.dart';
 import 'package:get/get.dart';
 
@@ -54,6 +55,7 @@ class HomeController extends GetxController {
   onGeolocator() => Get.toNamed(GeolocatorPage.routeName);
   onGithub() => Get.toNamed(GithubPage.routeName);
   onDialog() => Get.toNamed(DialogPage.routeName);
+  onMemo() => Get.toNamed(MemoPage.routeName);
 
   onTheme() => Get.changeThemeMode(Get.isDarkMode ? ThemeMode.light : ThemeMode.dark);
 

@@ -49,6 +49,7 @@ dependencies:
   infinite_scroll_pagination: ^3.2.0
   webview_flutter: ^4.2.2
 
+  floor: ^1.4.2
   get: ^4.6.5
   get_storage: ^2.1.1
 
@@ -57,6 +58,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  floor_generator: 1.4.2
   build_runner: ^2.4.6
   json_serializable: ^6.7.1
 
