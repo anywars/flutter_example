@@ -37,15 +37,15 @@ class ImagePickerPage extends GetView<ImagePickerController> {
   List<Widget> attachButtons() {
     List<Widget> buttons = [];
     if (!kIsWeb) {
-      buttons.add(ElevatedButton(
+      buttons.add(Expanded(child: ElevatedButton(
         child: Text("Camera"),
         onPressed: controller.onOpenCamera,
-      ));
+      )));
     }
-    buttons.add(ElevatedButton(
+    buttons.add(Expanded(child: ElevatedButton(
       child: Text("Image"),
       onPressed: controller.onOpenImage,
-    ));
+    )));
     return buttons;
   }
 
