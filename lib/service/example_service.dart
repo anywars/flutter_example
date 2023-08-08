@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_example/common/utils.dart';
+import 'package:flutter_example/database/dao/event_dao.dart';
 import 'package:flutter_example/database/dao/memo_dao.dart';
 import 'package:flutter_example/database/database.dart';
 import 'package:flutter_example/ui/firebase/firebase_messaging.dart';
@@ -11,7 +12,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 class ExampleService extends GetxService {
   late final _storage = GetStorage();
   late MemoDao _memoDao;
+  late EventDao _eventDao;
   MemoDao get memoDao => _memoDao;
+  EventDao get eventDao => _eventDao;
 
   @override
   void onInit() {
@@ -20,6 +23,7 @@ class ExampleService extends GetxService {
       .build()
       .then((db) {
         _memoDao = db.memoDao;
+        _eventDao = db.eventDao;
     });
 
     _saveFcmToken();

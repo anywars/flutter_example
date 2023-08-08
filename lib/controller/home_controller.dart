@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_example/common/analytics.dart';
 import 'package:flutter_example/ui/animated_text/animated_text.dart';
+import 'package:flutter_example/ui/cached_network_image/cached_network_image.dart';
 import 'package:flutter_example/ui/dialog/dialog.dart';
 import 'package:flutter_example/ui/geolocator/geolocator.dart';
 import 'package:flutter_example/ui/image_picker/image_picker.dart';
+import 'package:flutter_example/ui/memo/calendar.dart';
 import 'package:flutter_example/ui/memo/memo.dart';
 import 'package:flutter_example/ui/network_list/github.dart';
 import 'package:get/get.dart';
@@ -56,6 +58,8 @@ class HomeController extends GetxController {
   onGithub() => Get.toNamed(GithubPage.routeName);
   onDialog() => Get.toNamed(DialogPage.routeName);
   onMemo() => Get.toNamed(MemoPage.routeName);
+  onCalendar() => Get.toNamed(CalendarPage.routeName);
+  onCachedImage() => Get.toNamed(CachedNetworkImagePage.routeName);
 
   onTheme() => Get.changeThemeMode(Get.isDarkMode ? ThemeMode.light : ThemeMode.dark);
 

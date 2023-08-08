@@ -11,6 +11,9 @@ abstract class MemoDao {
 
   @Query('SELECT * FROM memo ORDER BY sort ASC')
   Stream<List<Memo>> findAllAsStream();
+
+  @Query('SELECT * FROM memo WHERE createdDate BETWEEN :start AND :end ORDER BY sort ASC')
+  Future<List<Memo>> findAllByDate(int start, int end);
   
   @insert
   Future<void> insertMemo(Memo memo);

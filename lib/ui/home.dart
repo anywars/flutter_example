@@ -5,25 +5,30 @@ import 'package:get/get.dart';
 class HomePage extends GetView<HomeController> {
   static final routeName = '/home';
 
+  late final _list = [
+    {'title': 'Image Picker', 'action': controller.onImage},
+    {'title': 'Animated Text', 'action': controller.onAnimatedText},
+    {'title': 'Geolocator', 'action': controller.onGeolocator},
+    {'title': 'Github', 'action': controller.onGithub},
+    {'title': 'Dialog', 'action': controller.onDialog},
+    {'title': 'Calendar', 'action': controller.onCalendar},
+    {'title': 'Database', 'action': controller.onMemo},
+    {'title': 'Cached Network Image', 'action': controller.onCachedImage},
+    {'title': 'Theme', 'action': controller.onTheme},
+  ];
+
+
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(),
-    body: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-      child: Column(
-        children: [
-
-          ElevatedButton(onPressed: controller.onImage, child: Text('Image Picker')),
-          ElevatedButton(onPressed: controller.onAnimatedText, child: Text('Animated Text')),
-          ElevatedButton(onPressed: controller.onGeolocator, child: Text('Geolocator')),
-          ElevatedButton(onPressed: controller.onGithub, child: Text('Github')),
-          ElevatedButton(onPressed: controller.onDialog, child: Text('Dialog')),
-          ElevatedButton(onPressed: controller.onMemo, child: Text('Memo')),
-
-          ElevatedButton(onPressed: controller.onTheme, child: Text('Theme')),
-
-        ],
+    body: ListView.separated(
+      itemBuilder: (_, index) => ListTile(
+        title: Text(_list[index]['title'].toString()),
+        onTap: _list[index]['action'] as Function(),
+        trailing: Icon(Icons.arrow_forward_ios_rounded),
       ),
+      separatorBuilder: (_, index) => Divider(),
+      itemCount: _list.length,
     ),
   );
 

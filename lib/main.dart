@@ -6,6 +6,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_example/binding/animated_text_binding.dart';
+import 'package:flutter_example/binding/calendar_binding.dart';
 import 'package:flutter_example/binding/dialog_binding.dart';
 import 'package:flutter_example/binding/geolocator_binding.dart';
 import 'package:flutter_example/binding/github_binding.dart';
@@ -16,10 +17,13 @@ import 'package:flutter_example/binding/init_binding.dart';
 import 'package:flutter_example/binding/memo_binding.dart';
 import 'package:flutter_example/binding/message_binding.dart';
 import 'package:flutter_example/common/analytics.dart';
+import 'package:flutter_example/model/entity/event_add.dart';
 import 'package:flutter_example/ui/animated_text/animated_text.dart';
+import 'package:flutter_example/ui/cached_network_image/cached_network_image.dart';
 import 'package:flutter_example/ui/dialog/dialog.dart';
 import 'package:flutter_example/ui/firebase/firebase_messaging.dart';
 import 'package:flutter_example/ui/geolocator/geolocator.dart';
+import 'package:flutter_example/ui/memo/calendar.dart';
 import 'package:flutter_example/ui/memo/memo.dart';
 import 'package:flutter_example/ui/network_list/github.dart';
 import 'package:flutter_example/ui/google/google_sign_in.dart';
@@ -28,6 +32,7 @@ import 'package:flutter_example/ui/image_picker/image_picker.dart';
 import 'package:flutter_example/ui/network_list/github_detail.dart';
 import 'package:flutter_example/ui/theme.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 
 Future<void> _firebaseMessagingHandler(RemoteMessage message) async {
@@ -39,6 +44,7 @@ Future<void> _firebaseMessagingHandler(RemoteMessage message) async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await initializeDateFormatting();
   FlutterError.onError = (error) => FirebaseCrashlytics.instance.recordFlutterFatalError(error);
   PlatformDispatcher.instance.onError = (error, stack) {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
@@ -70,7 +76,6 @@ class MainPage extends StatelessWidget {
       GetPage(name: HomePage.routeName, page: () => HomePage(), binding: HomeBinding()),
       GetPage(name: ImagePickerPage.routeName, page: () => ImagePickerPage(), binding: ImagePickerBinding()),
       GetPage(name: SignInPage.routeName, page: () => SignInPage()),
-
       GetPage(name: AnimatedTextPage.routeName, page: () => AnimatedTextPage(), binding: AnimatedTextBinding()),
       GetPage(name: GeolocatorPage.routeName, page: () => GeolocatorPage(), binding: GeolocatorBinding()),
       GetPage(name: MessagingPage.routeName, page: () => MessagingPage(), binding: MessageBinding()),
@@ -78,6 +83,9 @@ class MainPage extends StatelessWidget {
       GetPage(name: GithubDetailPage.routeName, page: () => GithubDetailPage(), binding: GithubDetailBinding()),
       GetPage(name: DialogPage.routeName, page: () => DialogPage(), binding: DialogBinding()),
       GetPage(name: MemoPage.routeName, page: () => MemoPage(), binding: MemoBinding()),
+      GetPage(name: CalendarPage.routeName, page: () => CalendarPage(), binding: CalendarBinding()),
+      GetPage(name: EventAddPage.routeName, page: () => EventAddPage(), binding: CalendarBinding()),
+      GetPage(name: CachedNetworkImagePage.routeName, page: () => CachedNetworkImagePage()),
     ],
 
     initialRoute: HomePage.routeName,
