@@ -14,6 +14,7 @@ class HomePage extends GetView<HomeController> {
     {'title': 'Calendar', 'action': controller.onCalendar},
     {'title': 'Database', 'action': controller.onMemo},
     {'title': 'Cached Network Image', 'action': controller.onCachedImage},
+    {'title': 'Player', 'action': controller.onPlayer},
     {'title': 'Theme', 'action': controller.onTheme},
   ];
 

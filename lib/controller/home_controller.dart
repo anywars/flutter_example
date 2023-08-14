@@ -10,6 +10,7 @@ import 'package:flutter_example/ui/image_picker/image_picker.dart';
 import 'package:flutter_example/ui/memo/calendar.dart';
 import 'package:flutter_example/ui/memo/memo.dart';
 import 'package:flutter_example/ui/network_list/github.dart';
+import 'package:flutter_example/ui/player/player.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
@@ -60,6 +61,7 @@ class HomeController extends GetxController {
   onMemo() => Get.toNamed(MemoPage.routeName);
   onCalendar() => Get.toNamed(CalendarPage.routeName);
   onCachedImage() => Get.toNamed(CachedNetworkImagePage.routeName);
+  onPlayer() => Get.toNamed(PlayerPage.routeName);
 
   onTheme() => Get.changeThemeMode(Get.isDarkMode ? ThemeMode.light : ThemeMode.dark);
 

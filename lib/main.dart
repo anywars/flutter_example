@@ -16,6 +16,7 @@ import 'package:flutter_example/binding/image_picker_binding.dart';
 import 'package:flutter_example/binding/init_binding.dart';
 import 'package:flutter_example/binding/memo_binding.dart';
 import 'package:flutter_example/binding/message_binding.dart';
+import 'package:flutter_example/binding/player_binding.dart';
 import 'package:flutter_example/common/analytics.dart';
 import 'package:flutter_example/model/entity/event_add.dart';
 import 'package:flutter_example/ui/animated_text/animated_text.dart';
@@ -30,6 +31,7 @@ import 'package:flutter_example/ui/google/google_sign_in.dart';
 import 'package:flutter_example/ui/home.dart';
 import 'package:flutter_example/ui/image_picker/image_picker.dart';
 import 'package:flutter_example/ui/network_list/github_detail.dart';
+import 'package:flutter_example/ui/player/player.dart';
 import 'package:flutter_example/ui/theme.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -86,6 +88,7 @@ class MainPage extends StatelessWidget {
       GetPage(name: CalendarPage.routeName, page: () => CalendarPage(), binding: CalendarBinding()),
       GetPage(name: EventAddPage.routeName, page: () => EventAddPage(), binding: CalendarBinding()),
       GetPage(name: CachedNetworkImagePage.routeName, page: () => CachedNetworkImagePage()),
+      GetPage(name: PlayerPage.routeName, page: () => PlayerPage(), binding: PlayerBinding()),
     ],
 
     initialRoute: HomePage.routeName,
